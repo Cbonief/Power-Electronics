@@ -24,6 +24,9 @@ The projects are divided into two main categories: high-frequency magnetics desi
 * **`buck_converter_analysis.m`**
     * Analyzes the frequency response of a synchronous buck converter. The script derives the plant's duty-cycle-to-output-voltage transfer function $G_{vd}(s)$, models a Type II compensator $G_c(s)$, and evaluates system stability and performance by analyzing the total loop gain $T(s)$ and the closed-loop output impedance $Z_o$.
 
+* **`buck_boost_peak_current_control.m`**
+    * Models a peak current-mode controlled (PCMC) buck-boost converter. It utilizes a linearized simple model where the control signal $I_c$ dictates the inductor current, derives the $G_{vc}(s)$ transfer function, and implements a PI controller.
+
 ---
 
 ## Methodology
@@ -47,7 +50,9 @@ The design and analysis scripts are based on several industry-standard methods.
 
 2.  **Frequency Domain Analysis**: A Type II compensator is designed with specific pole-zero placement to shape the loop gain. The goal is to ensure adequate phase margin for stability and high bandwidth for a fast transient response. 
 
-3.  **Output Impedance ($Z_o$)**: The closed-loop output impedance is analyzed to predict the output voltage deviation in response to dynamic load changes. A lower output impedance peak indicates better load transient performance. The relationship is given by: $Z_o(s) = \frac{Z_{out}(s)}{1 + T(s)}$, where $Z_{out}$ is the open-loop impedance and $T(s)$ is the loop gain.
+3. **Peak Current-Mode Control (PCMC)**: Treats the inductor as a voltage-controlled current source, simplifying the plant to a first-order system at low frequencies and providing inherent over-current protection.
+
+4.  **Output Impedance ($Z_o$)**: The closed-loop output impedance is analyzed to predict the output voltage deviation in response to dynamic load changes. A lower output impedance peak indicates better load transient performance. The relationship is given by: $Z_o(s) = \frac{Z_{out}(s)}{1 + T(s)}$, where $Z_{out}$ is the open-loop impedance and $T(s)$ is the loop gain.
 
 ---
 
